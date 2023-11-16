@@ -16,14 +16,14 @@ import { Textarea } from "@/components/ui/textarea";
 import handleSummarize from "./actions";
 import { useToast } from "@/components/ui/use-toast";
 
-export function TabsDemo(props) {
+export function TabsDemo(props:any) {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [file, setFile] = useState(null); // storing the uploaded file    [1
   const [fileSize, setFileSize] = useState(true);
   const { toast } = useToast();
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event:any) => {
     const { target } = event;
     setInputValue(target.value);
 
@@ -31,19 +31,18 @@ export function TabsDemo(props) {
     target.style.height = "auto";
     target.style.height = `${target.scrollHeight}px`;
   };
-  const handleFileInput = (e) => {
+  const handleFileInput = (e:any) => {
     setIsFileUploaded(true);
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-      // const content = e.target.result;
       setFile(e.target.result);
       if (file.size < 10000) {
         setFileSize(true);
       } else {
         setFileSize(false);
       }
-      console.log(e.target.result);
+      // console.log(e.target.result);
       // console.log(content?.toString());
     };
     reader.readAsText(file);
@@ -51,7 +50,7 @@ export function TabsDemo(props) {
     console.log(file);
   };
 
-  const getSummary = async (file, inputValue) => {
+  const getSummary = async (file:any, inputValue:string) => {
     props.setButtonClicked(true);
     if (fileSize) {
       const data = await handleSummarize(file, inputValue);

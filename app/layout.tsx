@@ -29,6 +29,18 @@ export default function RootLayout({
         )}
       >
         {children}
+        <footer>
+          <div className="container mx-auto px-4 py-8 text-center text-gray-500">
+            <p className="text-sm">
+              Made with{" "}
+              <span role="img" aria-label="love">
+                ❤️
+              </span>{" "}
+              by{" "}
+            <span className="font-medium">Sharad</span>
+            </p>
+            </div>
+        </footer>
       </body>
     </html>
   );
