@@ -7,17 +7,18 @@ require('dotenv').config({})
 const {OpenAI} = require('langchain/llms/openai')
 const {ChatOpenAI} = require('langchain/chat_models/openai');
 
-// const llm = new OpenAI({
-//   openAIApiKey: `${process.env.OpenAI_API_KEY}`,
+const llm = new OpenAI({
+  openAIApiKey: `${process.env.OpenAI_API_KEY}`,
 //   maxTokens:500,
-//   model_name: 'davinci-002',
-// });
-
-const chatModel = new ChatOpenAI({
-    openAIApiKey: `${process.env.OpenAI_API_KEY}`,
-  modelName: 'gpt-3.5-turbo',
+  model_name: 'davinci-002',
   maxConcurrency:2
-}); 
+});
+
+// const chatModel = new ChatOpenAI({
+//     openAIApiKey: `${process.env.OpenAI_API_KEY}`,
+//   modelName: 'gpt-3.5-turbo-instruct',
+//   maxConcurrency:2
+// }); 
 
 
 
@@ -30,7 +31,7 @@ const handleSummarize = async(file:any, description:string) => {
 
     const txt = file.toString('utf8');
     const data = `${txt} ${description} `
-    const chatResult =  chatModel.predict(data).then((res:any) => {
+    const chatResult =  llm.predict(data).then((res:any) => {
         console.log(res);
         return res;
     })
