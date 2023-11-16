@@ -37,7 +37,7 @@ export function TabsDemo(props:any) {
     reader.onload = (e:any) => {
       // const  e.target.result as any;
       setFile(e.target.result);
-      if (file.size < 100000) {
+      if (file.size < 10000) {
         setFileSize(true);
       } else {
         setFileSize(false);

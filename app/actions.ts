@@ -11,7 +11,6 @@ const llm = new OpenAI({
   openAIApiKey: `${process.env.OpenAI_API_KEY}`,
 //   maxTokens:500,
   model_name: 'davinci-002',
-  maxConcurrency:2
 });
 
 // const chatModel = new ChatOpenAI({
