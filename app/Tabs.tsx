@@ -73,7 +73,7 @@ export function TabsDemo(props) {
       <TabsContent value="file">
         <Card>
           <CardHeader>
-            <CardTitle>Uplaod file</CardTitle>
+            <CardTitle>Upload file</CardTitle>
             <CardDescription>
               Upload file csv,excel,txt,docx. File size must be less than 50kb
             </CardDescription>
