@@ -30,7 +30,7 @@ const handleSummarize = async(file:any, description:string) => {
 
     const txt = file.toString('utf8');
     const data = `${txt} ${description} `
-    const chatResult =  chatModel.predict(data).then((res) => {
+    const chatResult =  chatModel.predict(data).then((res:any) => {
         console.log(res);
         return res;
     })
