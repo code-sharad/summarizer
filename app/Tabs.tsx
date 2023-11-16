@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
@@ -35,7 +34,8 @@ export function TabsDemo(props:any) {
     setIsFileUploaded(true);
     const file = e.target.files[0];
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = (e:any) => {
+      // const  e.target.result as any;
       setFile(e.target.result);
       if (file.size < 10000) {
         setFileSize(true);
