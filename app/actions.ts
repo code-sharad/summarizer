@@ -1,17 +1,18 @@
 'use server'
 require('dotenv').config({})
-
+const OpenAI = require('openai')
 // const XLSX = require('xlsx');
 // const fs = require('fs');
-
-const {OpenAI} = require('langchain/llms/openai')
-const {ChatOpenAI} = require('langchain/chat_models/openai');
-
-const llm = new OpenAI({
-  openAIApiKey: `${process.env.OpenAI_API_KEY}`,
-//   maxTokens:500,
-  model_name: 'davinci-002',
+const openai = new OpenAI({
+  apiKey: `${process.env["OPENAI_API_KEY"]}`, // defaults to process.env["OPENAI_API_KEY"]
 });
+
+
+// const llm = new OpenAI({
+//   openAIApiKey: `${process.env.OpenAI_API_KEY}`,
+// //   maxTokens:500,
+//   model_name: 'davinci-002',
+// });
 
 // const chatModel = new ChatOpenAI({
 //     openAIApiKey: `${process.env.OpenAI_API_KEY}`,
@@ -30,12 +31,15 @@ const handleSummarize = async(file:any, description:string) => {
 
     const txt = file.toString('utf8');
     const data = `${txt} ${description} `
-    const chatResult =  llm.predict(data).then((res:any) => {
-        console.log(res);
-        return res;
-    })
-    // return()
-    return chatResult;
+    const chatCompletion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-16k",
+  messages: [{"role": "system", "content": "You are a Data analyist and take out meaningfull information from the file."},
+  {"role": "user", "content": `${data}`}],
+    max_tokens: 100,
+    });
+
+    console.log(chatCompletion.choices[0].message.content)
+    return chatCompletion.choices[0].message.content;
     
 }
 export default handleSummarize;

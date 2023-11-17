@@ -37,7 +37,7 @@ export function TabsDemo(props:any) {
     reader.onload = (e:any) => {
       // const  e.target.result as any;
       setFile(e.target.result);
-      if (file.size < 10000) {
+      if (file.size < 100000) {
         setFileSize(true);
       } else {
         setFileSize(false);
@@ -54,6 +54,7 @@ export function TabsDemo(props:any) {
     props.setButtonClicked(true);
     if (fileSize) {
       const data = await handleSummarize(file, inputValue);
+      // console.log(data)
       props.setSummary(data);
     } else {
       // toast({
