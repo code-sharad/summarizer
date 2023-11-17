@@ -4,7 +4,7 @@ const OpenAI = require('openai')
 // const XLSX = require('xlsx');
 // const fs = require('fs');
 const openai = new OpenAI({
-  apiKey: `${process.env["OPENAI_API_KEY"]}`, // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: `${process.env["API_KEY"]}`, // defaults to process.env["OPENAI_API_KEY"]
 });
 
 
